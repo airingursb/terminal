@@ -1,0 +1,59 @@
+{
+  "env": {
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "globals": {
+    "angular": true
+  },
+  "rules": {
+    "eqeqeq": 2,
+    "camelcase": 0,
+    "curly": 0,
+    "brace-style": [
+      2,
+      "1tbs"
+    ],
+    "quotes": [
+      2,
+      "single"
+    ],
+    "semi": [
+      2,
+      "never"
+    ],
+    "array-bracket-spacing": [
+      2,
+      "never"
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "space-infix-ops": 2,
+    "comma-spacing": 2,
+    "no-unused-vars": 2,
+    "no-var": 2,
+    "no-mixed-spaces-and-tabs": 2,
+    "no-multi-spaces": 2,
+    "no-console": 0,
+    "keyword-spacing": 2,
+    "space-before-function-paren": 0,
+    "block-spacing": 2,
+    "comma-dangle": 0,
+    "comma-style": 2,
+    "dot-location": 0,
+    "eol-last": 2,
+    "key-spacing": 2,
+    "no-const-assign": 2,
+    "space-in-parens": 2,
+    "space-before-blocks": 2,
+    "semi-spacing": 2,
+    "rest-spread-spacing": 2,
+    "no-redeclare": 2,
+    "spaced-comment": 2
+  }
+}
