@@ -7,7 +7,7 @@ let isInHis = 0
 let directory = []
 let files = []
 
-let host = 'http://118.24.154.90:3007'
+let host = 'http://121.42.167.55:3007'
 
 let e_main = $('#main')
 let e_input = $('.input-text')
