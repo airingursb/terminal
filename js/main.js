@@ -7,7 +7,7 @@ let isInHis = 0
 let directory = []
 let files = []
 
-let host = 'http://121.42.167.55:3007'
+let host = 'http://118.24.154.90:3007'
 
 let e_main = $('#main')
 let e_input = $('.input-text')
@@ -170,7 +170,7 @@ let mainFunc = (input, position) => {
                     dataType: 'jsonp',
                     success: (res) => {
                       if (res.code === 0) {
-                        nowPosition = '~' + pos.substring(1) + dir.substring(0, dir.length - 1) // ~/blog/img
+                        nowPosition = '~' + pos + dir.substring(0, dir.length - 1) // ~/blog/img
                         e_main.html($('#main').html() + '[<span id="usr">' + usrName + '</span>@<span class="host">ursb.me</span> ' + position + ']% ' + input + '<br/>')
                         e_html.animate({ scrollTop: $(document).height() }, 0)
                         e_pos.html(nowPosition)
