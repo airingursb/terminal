@@ -11,6 +11,11 @@ router.get('/', (req, res) => {
 router.get('/list', (req, res) => {
   // 用于获取所有目录和所有文件
   let { dir } = req.query
+
+  if (dir !== '/') {
+    return res.jsonp({ code: 400, message: 'CSRF WARNING!' })
+  }
+
   glob(`src/file${dir}**`, {}, (err, files) => {
     if (dir === '/') {
       files = files.map(i => i.replace('src/file/', ''))
@@ -28,7 +33,7 @@ router.get('/list', (req, res) => {
       return deapA - deapB
     })
 
-    return res.jsonp({ code: 0, data: {directory, files }})
+    return res.jsonp({ code: 0, data: { directory, files } })
   })
 })
 
@@ -56,20 +61,25 @@ router.get('/cat', (req, res) => {
   filename = dir.pop() // 丢弃最后一级，其肯定是文件
   dir = dir.join('/') + '/'
 
-  console.log(dir)
-
   glob(`src/file${dir}*.md`, {}, (err, files) => {
-    dir = dir.substring(1)
-    files = files.map(i => i.replace('src/file/', '').replace(dir, ''))
-    filename = filename.replace('./', '')
 
-    if (files.indexOf(filename) === -1) {
-      return res.jsonp({ code: 404, message: 'cat: no such file or directory: ' + filename })
-    } else {
-      fs.readFile(`src/file/${dir}/${filename}`, 'utf-8', (err, data) => {
-        return res.jsonp({ code: 0, data })
-      })
-    }
+    // 防止 CSRF
+    glob(`src/file/**`, {}, (err, files) => {
+      files[0] = '~' // 初始化主目录
+      files = files.filter(i => i.includes('.')) // 只保留文件
+
+      dir = dir.substring(1)
+      files = files.map(i => i.replace('src/file/', '').replace(dir, ''))
+      filename = filename.replace('./', '')
+
+      if (files.indexOf(filename) === -1) {
+        return res.jsonp({ code: 404, message: 'cat: no such file or directory: ' + filename })
+      } else {
+        fs.readFile(`src/file/${dir}/${filename}`, 'utf-8', (err, data) => {
+          return res.jsonp({ code: 0, data })
+        })
+      }
+    })
   })
 })
 
