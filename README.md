@@ -83,7 +83,7 @@ $(document).bind('keydown', function (b) {
 
 ## 0x03 help
 
-我们知道，Linix 命令的规范是`command[ Options...]`，以防有用户不了解，首先，我实现了一个最简单的`help`命令字。效果如下：
+我们知道，Linux 命令的规范是`command[ Options...]`，以防有用户不了解，首先，我实现了一个最简单的`help`命令字。效果如下：
 
 ![](https://airing.ursb.me/media/15353606000184/15355327549443.jpg)
 
